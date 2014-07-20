@@ -1,0 +1,5 @@
+vyatta-sslh (1.0.0) internal; urgency=low
+
+  * Initial Release.
+
+ -- Bronislav Robenek <brona@robenek.me>  Sun, 20 Jul 2014 23:27:05 +0200

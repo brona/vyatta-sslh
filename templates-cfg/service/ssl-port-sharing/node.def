@@ -1,0 +1,9 @@
+help: A ssl/ssh (sslh) multiplexer parameters
+
+priority: 740
+
+end: if [ ${COMMIT_ACTION} = 'DELETE' ]; then
+        sudo /opt/vyatta/sbin/vyatta-update-sslh.pl --action=disable
+     else
+        sudo /opt/vyatta/sbin/vyatta-update-sslh.pl --action=enable
+     fi;

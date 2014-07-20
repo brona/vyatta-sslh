@@ -1,0 +1,11 @@
+help: Mode of sslh daemon
+
+type: txt
+
+default: "select"
+
+syntax:expression: $VAR(@) in "select", "fork"; \
+                   "must be 'select' or 'fork'"
+
+val_help: select; Uses only one thread, which monitors all connections at once
+val_help: fork; Forks a new process for each incoming connection

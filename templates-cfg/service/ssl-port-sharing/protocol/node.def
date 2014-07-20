@@ -1,0 +1,10 @@
+tag:
+
+type: txt
+
+help: Protocol to translate to other ip/port [REQUIRED]
+
+allowed: /usr/sbin/sslh-select -h 2>&1 | grep -i "\[\-\-[^ ]\+ <addr>\]" | sed -e "s/\s*\[\-\-\([^ ]\+\) <addr>\]/\1/ig"
+
+val_help: <protocol> ; Protocol to translate
+

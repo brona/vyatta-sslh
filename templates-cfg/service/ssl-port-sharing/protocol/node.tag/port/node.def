@@ -1,0 +1,9 @@
+help: Destination port [REQUIRED]
+
+type: u32
+
+default: 443
+
+syntax:expression: ($VAR(@) >= 1 && $VAR(@) <= 49151) ; "must be between 1-49151"
+
+val_help: u32:1-49151; Destination port

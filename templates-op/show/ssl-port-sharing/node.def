@@ -1,0 +1,2 @@
+help: Show SSL Port-sharing status and information
+run: ${vyatta_bindir}/vyatta-show-sslh.pl

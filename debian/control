@@ -1,0 +1,16 @@
+Source: vyatta-sslh
+Section: contrib/net
+Priority: extra
+Maintainer: Bronislav Robenek <brona@robenek.me>
+Standards-Version: 3.9.1
+Build-Depends: debhelper (>= 5), autotools-dev, autoconf
+
+Package: vyatta-sslh
+Architecture: all
+Depends: vyatta-cfg-system,
+ vyatta-cfg,
+ vyatta-op,
+ sslh (>= 1.15),
+ ${misc:Depends}
+Description: Vyos/Vyatta SSLH configuration utilities
+ Vyos/Vyatta SSLH configuration utilities, templates and scripts.
