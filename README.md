@@ -124,12 +124,12 @@ This repository is only temporary and is provided as-is with no guarantees. vyat
 
 This package is just a wrapper for sslh.
 
-Configuration is written to /etc/sslh.conf.
+Configuration is written to `/etc/sslh.conf`.
 
 sslh is started using `start-stop-daemon`.
 
 ## Unsupported features / future development
-We would like to encourage anyone to contribute to this package. We will be glad to accept any pull-requests.
+We would like to encourage anyone to contribute to this package. We will be glad to accept pull-requests.
 
 Currently these features are missing:
 
