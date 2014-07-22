@@ -1,6 +1,6 @@
 # vyatta-sslh
 
-This package provides Vyatta/VyOS [http://www.rutschle.net/tech/sslh.shtml](SSLH) configuration, templates and scripts.
+This package provides Vyatta/VyOS [SSLH](http://www.rutschle.net/tech/sslh.shtml) configuration, templates and scripts.
 
 SSLH is SSL multiplexer which provides port-sharing of same TCP port for multiple applications - more information at http://www.rutschle.net/tech/sslh.shtml
 
