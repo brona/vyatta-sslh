@@ -52,9 +52,9 @@ Example result of show command:
 
     Protocol   IP Address           Port
     --------   ------------------   -----
-    http       172.22.0.10          443
-    openvpn    127.0.0.1            444
-    ssh        172.22.0.10          22
+    http       192.168.1.5          443
+    openvpn    127.0.0.1            1194
+    ssh        192.168.1.10         22
 
 ## Installation of SSLH in VyOS/Vyatta
 
