@@ -3,7 +3,7 @@ vyatta-sslh (1.0.1) internal; urgency=low
   * Fixed string comparsion.
   * README.md enhancements.
 
- -- Bronislav Robenek <robenek@br.local>  Tue, 22 Jul 2014 12:51:00 +0200
+ -- Bronislav Robenek <brona@robenek.me>  Tue, 22 Jul 2014 12:51:00 +0200
 
 vyatta-sslh (1.0.0) internal; urgency=low
 
