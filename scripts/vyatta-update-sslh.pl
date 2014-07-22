@@ -171,7 +171,7 @@ sub load_mode {
     my $config = new Vyatta::Config;
     my $path = 'service ssl-port-sharing';
     $config->setLevel($path);
-    if ($config->exists('mode') && ($config->returnValue('mode')=="fork")) {
+    if ($config->exists('mode') && ($config->returnValue('mode') eq "fork")) {
         # In debian sslh -> sslh-fork
         if ( -x "$daemon-fork" ) {
             $daemon .= "-fork";
