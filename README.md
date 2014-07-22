@@ -44,6 +44,18 @@ Example Vyatta/VyOS configuration:
       }
     }
 
+Example result of show command:
+
+    $ show ssl-port-sharing
+    SSL Port-sharing IS operational (PID = 9234).
+    Forwarding in select mode from 0.0.0.0:1234 to:
+
+    Protocol   IP Address           Port
+    --------   ------------------   -----
+    http       172.22.0.10          443
+    openvpn    127.0.0.1            444
+    ssh        172.22.0.10          22
+
 ## Installation of SSLH in VyOS/Vyatta
 
 To easily install recent software including sslh add jessie and squeeze (optional) repository to VyOS/Vyatta.
@@ -110,8 +122,8 @@ This repository is only temporary and is provided as-is with no guarantees. vyat
 
 ### B) Use downloaded .deb file
 
-    $ wget http://packages.robenek.me/debian/vyatta-sslh_1.0.0_all.deb
-    $ sudo dpkg -i vyatta-sslh_1.0.0_all.deb
+    $ wget http://packages.robenek.me/debian/vyatta-sslh_1.0.1_all.deb
+    $ sudo dpkg -i vyatta-sslh_1.0.1_all.deb
 
 ### C) Compile from source
 
