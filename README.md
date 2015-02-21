@@ -1,6 +1,6 @@
 # vyatta-sslh
 
-This package provides Vyatta/VyOS [SSLH](http://www.rutschle.net/tech/sslh.shtml) configuration, templates and scripts.
+This package provides Vyatta/VyOS/EdgeOS [SSLH](http://www.rutschle.net/tech/sslh.shtml) configuration, templates and scripts.
 
 SSLH is SSL multiplexer which provides port-sharing of same TCP port for multiple applications - more information at http://www.rutschle.net/tech/sslh.shtml
 
@@ -18,12 +18,12 @@ Used software:
 
 Tested with:
 
-* sslh (1.15-1) from jessie
-* VyOS 1.0.4 hydrogen
+* sslh (1.16) from jessie, backported to squeeze
+* VyOS 1.1.3 helium
 
 ## Usage
 
-Example Vyatta/VyOS configuration:
+Example Vyatta/VyOS/EdgeOS configuration:
 
     service {
       ssl-port-sharing {
@@ -56,62 +56,53 @@ Example result of show command:
     openvpn    127.0.0.1            1194
     ssh        192.168.1.10         22
 
-## Installation of SSLH in VyOS/Vyatta
+## Installation of SSLH in VyOS/Vyatta/EdgeOS
 
-To easily install recent software including sslh add jessie and squeeze (optional) repository to VyOS/Vyatta.
+It is not easy to install recent software including sslh add vyatta-sslh package into VyOS. The only way to install `sslh-1.16` is to create backport and recompile package for your distribution/architecture. Debian has [SimpleBackportCreation](https://wiki.debian.org/SimpleBackportCreation) manual.
 
-    # set system package repository jessie components 'main'
-    # set system package repository jessie distribution 'jessie'
-    # set system package repository jessie url 'http://mirrors.kernel.org/debian'
+Since I already did this please feel free to use this source/binary, however be aware that no guarantees are provided.
 
-    # set system package repository squeeze components 'main'
-    # set system package repository squeeze distribution 'squeeze'
-    # set system package repository squeeze url 'http://mirrors.kernel.org/debian'
-    # commit
+Either way you need some dependencies from squeeze/squeeze-lts, so you should add these:
 
-To install only single package (eg. sslh) it is reasonable idea to pin current packages:
+        set system package repository squeeze components 'main contrib non-free'
+        set system package repository squeeze distribution 'squeeze'
+        set system package repository squeeze url 'http://mirrors.kernel.org/debian'
 
-    $ cat /etc/apt/preferences
-    Package: *
-    Pin: release n=hydrogen
-    Pin-Priority: 1000
+        set system package repository squeeze-lts components 'main contrib non-free'
+        set system package repository squeeze-lts distribution 'squeeze-lts'
+        set system package repository squeeze-lts url 'http://mirrors.kernel.org/debian'
 
-    $ cat /etc/apt/preferences.d/squeeze.pref
-    Package: *
-    Pin: release n=squeeze
-    Pin-Priority: 700
-
-    $ cat /etc/apt/preferences.d/jessie.pref
-    Package: *
-    Pin: release n=jessie
-    Pin-Priority: 90
-
-Then update & upgrade system - be careful no packages should be upgraded.
-
-    # Should proceed with no problems
-    $ sudo apt-get update
-
-    # Verify priorities
-    $ sudo apt-cache policy
-
-    # Almost no or zero packages should be upgraded
-    $ sudo apt-get upgrade
-
-A) Install sslh from jessie (with dependencies):
-
-    # You will be asked about installation/upgrade plan
-    $ sudo apt-get -t jessie install sslh
-
-B) Install sslh from jessie (one by one package):
-
-    # You will have to selectively upgrade unmet dependencies (eg. libc6)
-    $ sudo apt-get install sslh/jessie
-
-## Installation of vyatta-sslh in VyOS/Vyatta
-
-### Disabling Debian sslh init.d script
+During sslh instalation choose `standalone`, and then disable automatic startup:
 
     $ sudo update-rc.d -f sslh remove
+
+### A) Use custom repository
+This repository is only temporary and is provided as-is with no guarantees. sslh may be once formaly backported into squeeze-backports-sloppy.
+
+    $ echo "deb http://packages.robenek.me debian/" > /etc/apt/sources.list.d/robenek.list
+    $ sudo apt-get update
+    $ sudo apt-get install sslh
+
+### B) Use downloaded .deb file
+
+    $ wget http://packages.robenek.me/debian/sslh_1.16-2~bpo60+1_amd64.deb
+    $ dpkg -i sslh_1.16-2~bpo60+1_amd64.deb
+
+### C) Compile from prepared source
+
+    $ wget http://packages.robenek.me/debian/sslh_1.16-2~bpo60+1.tar.gz
+    $ # Extract, install build-dep, etc...
+    $ dpkg-buildpackage -us -uc
+
+### D) Create your own backported package
+
+    $ dget -x http://ftp.de.debian.org/debian/pool/main/s/sslh/sslh_1.16-2.dsc
+    $ # Extract, install build-dep, etc...
+    $ # Edit debian/rules, debian/compat, debian/control
+    $ fakeroot debian/rules binary
+    $ dpkg-buildpackage -us -uc
+
+## Installation of vyatta-sslh in VyOS/Vyatta/EdgeOS
 
 ### A) Use custom repository
 This repository is only temporary and is provided as-is with no guarantees. vyatta-sslh may be once integrated into VyOS community repository.
@@ -122,8 +113,8 @@ This repository is only temporary and is provided as-is with no guarantees. vyat
 
 ### B) Use downloaded .deb file
 
-    $ wget http://packages.robenek.me/debian/vyatta-sslh_1.0.1_all.deb
-    $ sudo dpkg -i vyatta-sslh_1.0.1_all.deb
+    $ wget http://packages.robenek.me/debian/vyatta-sslh_1.0.2_all.deb
+    $ sudo dpkg -i vyatta-sslh_1.0.2_all.deb
 
 ### C) Compile from source
 
@@ -145,6 +136,6 @@ We would like to encourage anyone to contribute to this package. We will be glad
 
 Currently these features are missing:
 
-* sslh is binding to 0.0.0.0 only (there is no option).
+* Specify sslh binding (currently to 0.0.0.0 only).
 * There is no support for transparent mode of sslh.
-
+* Binary package for EdgeOS

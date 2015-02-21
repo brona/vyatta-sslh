@@ -34,12 +34,15 @@ my $config = new Vyatta::Config;
 $config->setLevel($config_path);
 
 my $pidfile  = '/var/run/sslh.pid';
-my $pid = `cat $pidfile`;
-chomp $pid;
+my $pid = 0;
 my $pid_running = 0;
 
-if ( -e "/proc/$pid/status") {
-  $pid_running = 1;
+if ( -r $pidfile ) {
+  $pid = `cat $pidfile`;
+  chomp $pid;
+  if ( -e "/proc/$pid/status") {
+    $pid_running = 1;
+  }
 }
 
 if ( $pid_running ) {

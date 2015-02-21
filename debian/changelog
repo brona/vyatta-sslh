@@ -1,3 +1,9 @@
+vyatta-sslh (1.0.2) internal; urgency=low
+
+  * Fixed show command.
+
+ -- Bronislav Robenek <brona@robenek.me>  Mon, 1 Sep 2014 15:52:00 +0200
+
 vyatta-sslh (1.0.1) internal; urgency=low
 
   * Fixed string comparsion.
