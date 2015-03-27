@@ -19,7 +19,7 @@ Used software:
 Tested with:
 
 * sslh (1.16) from jessie, backported to squeeze
-* VyOS 1.1.3 helium
+* VyOS 1.1.5 Helium
 
 ## Usage
 
