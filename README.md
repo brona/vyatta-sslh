@@ -72,6 +72,11 @@ Either way you need some dependencies from squeeze/squeeze-lts, so you should ad
         set system package repository squeeze-lts distribution 'squeeze-lts'
         set system package repository squeeze-lts url 'http://mirrors.kernel.org/debian'
 
+On VyOS 1.1.5 to install sslh you will have to install these dependencies first:
+
+    $ aptitude update
+    $ aptitude install update-inetd libconfig8
+
 During sslh instalation choose `standalone`, and then disable automatic startup:
 
     $ sudo update-rc.d -f sslh remove
